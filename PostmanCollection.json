@@ -133,7 +133,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "67aa278c9566246d1e74a166"
 										}
 									]
 								}
@@ -221,7 +221,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nome\": \"Nome do Aluno\",\n    \"email\": \"email@exemplo.com\",\n    \"firebaseId\": \"firebase-id\",\n    \"turmaId\": \"turma-id\",\n    \"matricula\": \"matricula\"\n  }",
+									"raw": "{\n    \"nome\": \"Ana Carolina\",\n    \"email\": \"email@exemplo.com\",\n    \"firebaseId\": \"firebase-id\",\n    \"turmaId\": \"1° Ano\",\n    \"matricula\": \"matricula\"\n  }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -358,7 +358,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nome\": \"Nome do Alunos\",\n    \"email\": \"email@exemplo.com\",\n    \"firebaseId\": \"firebase-id\",\n    \"turmaId\": \"turma-id\",\n    \"matricula\": \"matricula\"\n  }",
+									"raw": "{\n    \"nome\": \"Ana Carolina 2\",\n    \"email\": \"email@exemplo.com\",\n    \"firebaseId\": \"firebase-id\",\n    \"turmaId\": \"1° Ano\",\n    \"matricula\": \"matricula\"\n  }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -379,7 +379,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "67a7ab7257fe5b07eea93ee7"
+											"value": "67aa278c9566246d1e74a166"
 										}
 									]
 								}
@@ -935,6 +935,198 @@
 										{
 											"key": "id",
 											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "app-answer",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Get all Respostas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/respostas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"respostas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Respostas by ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/respostas/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"respostas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Criar resposta",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"questionId\": \"idquestao\",\n  \"userId\": \"iduser\",\n  \"selectedOption\": \"opcao_3\",\n  \"answeredAt\": \"2023-10-01T12:00:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/respostas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"respostas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UPDATE",
+					"item": [
+						{
+							"name": "Update resposta",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"questionId\": \"idquestao\",\n  \"userId\": \"iduser\",\n  \"selectedOption\": \"opcao_3\",\n  \"answeredAt\": \"2023-10-01T12:00:00\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/respostas/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"respostas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67aa6654de40d41cc07b2353"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Delete Resposta",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/respostas/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"respostas",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "67aa6654de40d41cc07b2353"
 										}
 									]
 								}
