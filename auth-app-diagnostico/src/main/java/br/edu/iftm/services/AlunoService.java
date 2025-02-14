@@ -12,4 +12,8 @@ public interface AlunoService {
     List<Aluno> findAll();
 
     void deleteById(String id);
+
+    List<Aluno> getStudentsByParent(String parentId);
+
+    Aluno registerStudent(String name, String birthDate, String parentId);
 }

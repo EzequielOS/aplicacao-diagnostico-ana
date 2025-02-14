@@ -1,26 +1,18 @@
 package br.edu.iftm.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import br.edu.iftm.models.Aluno;
 import br.edu.iftm.services.AlunoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "Alunos", description = "Endpoints para gerenciamento de alunos")
 @RestController
-@RequestMapping("/alunos")
+@RequestMapping("/students")
 public class AlunoController {
 
     @Autowired
@@ -50,7 +42,7 @@ public class AlunoController {
     public ResponseEntity<Aluno> updateAluno(@PathVariable String id, @RequestBody Aluno alunoDetails) {
         Aluno aluno = alunoService.findById(id);
         if (aluno != null) {
-            aluno.setNome(alunoDetails.getNome());
+            aluno.setName(alunoDetails.getName());
             aluno.setEmail(alunoDetails.getEmail());
             alunoService.save(aluno);
             return ResponseEntity.ok(aluno);
@@ -69,5 +61,25 @@ public class AlunoController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerStudent(
+            @RequestParam String name,
+            @RequestParam String birthDate,
+            @RequestParam String parentId
+    ) {
+        try {
+            Aluno student = alunoService.registerStudent(name, birthDate, parentId);
+            return ResponseEntity.ok(student);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/by-parent/{parentId}")
+    public ResponseEntity<List<Aluno>> getStudentsByParent(@PathVariable String parentId) {
+        List<Aluno> students = alunoService.getStudentsByParent(parentId);
+        return ResponseEntity.ok(students);
     }
 }

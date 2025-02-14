@@ -11,28 +11,34 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 @Getter
 @Setter
-@Document(collection = "alunos")
+@Document(collection = "students")
 public class Aluno {
     @Id
     private String id;
     @Field("nome_aluno")
-    private String nome;
+    private String name;
     @Field("email_aluno")
     private String email;
     @Field("fb_id_aluno")
     private String firebaseId;
-    @Field("turma_id_aluno")
-    private String turmaId;
+    @Field("turma_aluno")
+    private String className;
     @Field("matricula_aluno")
     private String matricula;
+    @Field("score_aluno")
+    private Integer score;
+    @Field("id_responsavel_aluno")
+    private String parentId;
+    @Field("date_nasc_aluno")
+    private String birthDate;
 
     public static Aluno fromDTO(AlunoDTO alunoDTO) {
         Aluno aluno = new Aluno();
         aluno.setId(alunoDTO.getId());
-        aluno.setNome(alunoDTO.getNome());
+        aluno.setName(alunoDTO.getNome());
         aluno.setEmail(alunoDTO.getEmail());
         aluno.setFirebaseId(alunoDTO.getFirebaseId());
-        aluno.setTurmaId(alunoDTO.getTurmaId());
+        aluno.setClassName(alunoDTO.getTurmaId());
         aluno.setMatricula(alunoDTO.getMatricula());
         return aluno;
     }
