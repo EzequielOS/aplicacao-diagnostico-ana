@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/questoes")
+@RequestMapping("/questions")
 @Tag(name = "Questões", description = "Gerenciamento de questões")
 public class QuestaoController {
 
@@ -40,7 +40,7 @@ public class QuestaoController {
     }
 
     @Operation(summary = "Busca uma questão por ID", description = "Retorna uma questão específica com base no ID informado")
-    @GetMapping("/{id}")
+    @GetMapping("id/{id}")
     public ResponseEntity<Questao> findById(
             @Parameter(description = "ID da questão a ser buscada") @PathVariable String id) {
         Questao questao = questaoService.findById(id);
@@ -61,9 +61,9 @@ public class QuestaoController {
             questao.setCategory(questaoDetails.getCategory());
             questao.setLevel(questaoDetails.getLevel());
             questao.setTitle(questaoDetails.getTitle());
-            questao.setDescription(questaoDetails.getDescription());
+            questao.setText(questaoDetails.getText());
             questao.setOptions(questaoDetails.getOptions());
-            questao.setCorrectAnswer(questaoDetails.getCorrectAnswer());
+            questao.setCorrectOption(questaoDetails.getCorrectOption());
             questao.setValue(questaoDetails.getValue());
             questaoService.save(questao);
             return ResponseEntity.ok(questao);
@@ -78,5 +78,17 @@ public class QuestaoController {
             @Parameter(description = "ID da questão a ser deletada") @PathVariable String id) {
         questaoService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{classLevel}")
+    public ResponseEntity<List<Questao>> getQuestionsByClassLevel(@PathVariable String classLevel) {
+        List<Questao> questions = questaoService.getQuestionsByClassLevel(classLevel);
+        return ResponseEntity.ok(questions);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Questao> addQuestion(@RequestBody Questao question) {
+        Questao savedQuestion = questaoService.addQuestion(question);
+        return ResponseEntity.ok(savedQuestion);
     }
 }

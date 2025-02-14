@@ -35,17 +35,34 @@
 						{
 							"name": "Get All Alunos",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUEFSRU5UIiwic3ViIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3Mzk1NjE5ODUsImV4cCI6MTczOTU5Nzk4NX0.1BRur-AresWFb3F_xD-q8Fc4beHx2fDicaaPV-AY_H4",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/alunos",
+									"raw": "http://localhost:8080/students",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"alunos"
+										"students"
+									],
+									"query": [
+										{
+											"key": "Authori",
+											"value": null,
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -117,17 +134,27 @@
 						{
 							"name": "Get Alunos By ID",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUEFSRU5UIiwic3ViIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3Mzk1NjA5MzEsImV4cCI6MTczOTU5NjkzMX0.Ac-IOxM570-raZXP5c_dia5mez2Xsg1EJ8w2dCT2gvU",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/alunos/:id",
+									"raw": "http://localhost:8080/students/:id",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"alunos",
+										"students",
 										":id"
 									],
 									"variable": [
@@ -199,6 +226,42 @@
 											"key": "id",
 											"value": ""
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Aluno pelo id do responsavel",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUEFSRU5UIiwic3ViIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3Mzk1NjE5ODUsImV4cCI6MTczOTU5Nzk4NX0.1BRur-AresWFb3F_xD-q8Fc4beHx2fDicaaPV-AY_H4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/students/by-parent/67af8d3e248e56055fc448fa",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"students",
+										"by-parent",
+										"67af8d3e248e56055fc448fa"
 									]
 								}
 							},
@@ -336,6 +399,56 @@
 									"port": "8080",
 									"path": [
 										"logs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register Aluno",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUEFSRU5UIiwic3ViIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3Mzk1NjE5ODUsImV4cCI6MTczOTU5Nzk4NX0.1BRur-AresWFb3F_xD-q8Fc4beHx2fDicaaPV-AY_H4",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Jonny Deep",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "01/01/2019",
+											"type": "text"
+										},
+										{
+											"key": "parentId",
+											"value": "67af8d3e248e56055fc448fa",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/students/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"students",
+										"register"
 									]
 								}
 							},
@@ -625,6 +738,127 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "Register USER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john.doe@example.com\",\r\n    \"password\": \"password123\",\r\n    \"role\": \"PARENT\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login USER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "john.doe@example.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ValidarSenha USER",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"parentId\": \"67af8d3e248e56055fc448fa\",\r\n    \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/validate-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"validate-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -723,6 +957,31 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET questao por turma",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/questions/1º Ano",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"questions",
+										"1º Ano"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -790,6 +1049,47 @@
 									"port": "8081",
 									"path": [
 										"questoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Registrar questao",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"Quanto é 2+2?\",\r\n    \"options\": [\r\n        \"3\",\r\n        \"4\",\r\n        \"5\"\r\n    ],\r\n    \"correctOption\": \"4\",\r\n    \"imageUrl\": \"http://example.com/image.png\",\r\n    \"classLevel\": \"1º Ano\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/questions/add",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"questions",
+										"add"
 									]
 								}
 							},

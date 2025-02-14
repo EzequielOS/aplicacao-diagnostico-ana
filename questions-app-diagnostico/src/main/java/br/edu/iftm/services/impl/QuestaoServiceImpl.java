@@ -33,5 +33,13 @@ public class QuestaoServiceImpl implements QuestaoService {
         questaoRepository.deleteById(id);
     }
 
+    public List<Questao> getQuestionsByClassLevel(String classLevel) {
+        return questaoRepository.findByClassLevel(classLevel);
+    }
+
+    public Questao addQuestion(Questao question) {
+        return questaoRepository.save(question);
+    }
+
 
 }

@@ -19,11 +19,13 @@ public class Questao {
     @Field("quest_title")
     private String title;
     @Field("quest_description")
-    private String description;
+    private String text;
     @Field("quest_options")
     private List<String> options;
-    @Field("quest_correct_answer")
-    private String correctAnswer;
+    @Field("quest_correct_option")
+    private String correctOption;
     @Field("quest_value")
     private int value;
+    private String imageUrl; // URL da imagem armazenada (ex: Firebase Storage, S3, etc.)
+    private String classLevel; // Exemplo: "1º Ano", "2º Ano"
 }

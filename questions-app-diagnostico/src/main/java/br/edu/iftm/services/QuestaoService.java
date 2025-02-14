@@ -12,4 +12,8 @@ public interface QuestaoService {
     List<Questao> findAll();
 
     void deleteById(String id);
+
+    Questao addQuestion(Questao question);
+
+    List<Questao> getQuestionsByClassLevel(String classLevel);
 }
